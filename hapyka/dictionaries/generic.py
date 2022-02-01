@@ -1,0 +1,3 @@
+START_MESSAGE = "Meh!"
+REPOSTER_DISCARD_CALLBACK_DATA = "discard"
+REPOSTER_CAPTION_TEMPLATE = "Posted by {} in «{}»"
