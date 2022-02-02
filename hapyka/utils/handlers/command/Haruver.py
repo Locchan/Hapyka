@@ -1,21 +1,18 @@
 from hapyka.dictionaries.generic import HARUKA_VER_TEMPLATE
-from hapyka.utils.handlers.HaruHandler import HaruHandler
+from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text
 from __main__ import version, release
 enabled = True
-commands = ["ver", "version", "nkvdver"]
 
 
-class Haruver(HaruHandler):
+class Haruver(CommandHandler):
     def __init__(self):
         self.enabled = enabled
+        self.commands = ["ver", "version", "nkvdver"]
         super().__init__()
 
-    def handle(self, update, context):
-        for command in commands:
-            if "/{command}".format(command=command) in update.message.text:
-                reply_text(update, context, HARUKA_VER_TEMPLATE.format(version, release))
-                return
+    def handle_impl(self, update, context):
+        reply_text(update, context, HARUKA_VER_TEMPLATE.format(version, release))
 
     def enable(self):
         return self.enabled

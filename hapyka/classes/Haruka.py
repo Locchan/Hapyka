@@ -9,9 +9,11 @@ logger = get_logger()
 
 class Haruka:
     def __init__(self, token):
-        logger.info("Creating bot instance...")
+        logger.info("Starting bot...")
         self.token = token
         self.upd_obj = Updater(token=self.token, use_context=True)
+        self.start_bot()
+        logger.info("Done starting bot.")
 
     def start_bot(self):
         dispatcher = self.upd_obj.dispatcher

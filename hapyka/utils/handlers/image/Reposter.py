@@ -5,7 +5,7 @@ import hapyka.utils.logger
 from hapyka.dictionaries.generic import REPOSTER_CAPTION_TEMPLATE, REPOSTER_DISCARD_CALLBACK_DATA
 from hapyka.dictionaries.internal import HANDLERS_REPOSTER_DISCARD
 from hapyka.utils.handlers.HaruHandler import HaruHandler
-from hapyka.utils.tg_utils import get_sender_by_update, get_chat_by_msg
+from hapyka.utils.tg_utils import get_sender_by_update, get_chat_by_update
 
 enabled = True
 logger = hapyka.utils.logger.get_logger()
@@ -43,11 +43,11 @@ class Reposter(HaruHandler):
         markup = InlineKeyboardMarkup(inline_keyboard=keyboard, one_time_keyboard=True, resize_keyboard=True)
         return markup
 
-    def handle(self, update, context):
+    def handle_impl(self, update, context):
         chat_id = update.effective_chat.id
         if chat_id in self.reposter_from:
             image_id = update.message.photo[-1].file_id
             caption = REPOSTER_CAPTION_TEMPLATE.format(get_sender_by_update(update, with_id=False, with_username=False),
-                                                       get_chat_by_msg(update))
+                                                       get_chat_by_update(update, with_id=False))
             for achat in self.reposter_control:
                 context.bot.send_photo(achat, photo=image_id, caption=caption, reply_markup=self.generate_markup())

@@ -14,7 +14,7 @@ class PrintMessage(HaruHandler):
         self.enabled = enabled
         super().__init__()
 
-    def handle(self, update, context):
+    def handle_impl(self, update, context):
         if update.message:
             if update.message.text:
                 logger.info("Message: {}: {}".format(get_sender_by_update(update), update.message.text))

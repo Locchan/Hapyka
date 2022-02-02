@@ -9,7 +9,7 @@ class ReposterInline(HaruHandler):
         self.enabled = enabled
         super().__init__()
 
-    def handle(self, update, context):
+    def handle_impl(self, update, context):
         callback_data = update.callback_query.data
         if callback_data == REPOSTER_DISCARD_CALLBACK_DATA:
             context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.callback_query.message.message_id)

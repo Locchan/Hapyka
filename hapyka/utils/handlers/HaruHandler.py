@@ -18,7 +18,7 @@ class HaruHandler:
             self.disable_reason = self.enabled[1]
             self.enabled = self.enabled[0]
         if self.enabled:
-            logger.info("{} handler enabled".format(self.__class__.__name__, self.enabled))
+            logger.debug("{} handler enabled".format(self.__class__.__name__, self.enabled))
         else:
             if self.disable_reason:
                 logger.info(
@@ -29,5 +29,8 @@ class HaruHandler:
     def enable(self):
         pass
 
-    def handle(self, update, context):
+    def __handle__(self, update, context):
+        return self.handle_impl(update, context)
+
+    def handle_impl(self, update, context):
         pass
