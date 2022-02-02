@@ -1,17 +1,17 @@
 #!/usr/bin/env python
+
 config_container = None
+version = "0.0.1a"
+release = "Press F to pay respects to NKVD-bot (R.I.P 2017-2022)"
+
 import hapyka.utils.config
 import logging
 import sys
-import locale
-import os
 
 from hapyka.classes.Haruka import Haruka
 
 from hapyka.utils.logger import get_logger
 
-version = "0.0.1"
-release = "Press F to pay respects to NKVD-bot (R.I.P 2017-2022)"
 logger = get_logger()
 
 handler = logging.StreamHandler(sys.stdout)

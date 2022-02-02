@@ -1,7 +1,7 @@
 from hapyka.dictionaries.generic import REPOSTER_DISCARD_CALLBACK_DATA
 from hapyka.utils.handlers.HaruHandler import HaruHandler
 
-enabled=True
+enabled = True
 
 
 class ReposterInline(HaruHandler):
@@ -15,6 +15,7 @@ class ReposterInline(HaruHandler):
             context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.callback_query.message.message_id)
         else:
             context.bot.send_photo(callback_data, photo=update.callback_query.message.photo[-1], caption=update.callback_query.message.caption)
+            context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.callback_query.message.message_id)
 
     def enable(self):
         return self.enabled

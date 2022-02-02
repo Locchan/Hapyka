@@ -1,3 +1,4 @@
 START_MESSAGE = "Meh!"
+HARUKA_VER_TEMPLATE = "Hapyka v{}\n{}"
 REPOSTER_DISCARD_CALLBACK_DATA = "discard"
 REPOSTER_CAPTION_TEMPLATE = "Posted by {} in «{}»"
