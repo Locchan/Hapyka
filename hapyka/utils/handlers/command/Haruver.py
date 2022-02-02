@@ -1,4 +1,4 @@
-from hapyka.dictionaries.generic import START_MESSAGE, HARUKA_VER_TEMPLATE
+from hapyka.dictionaries.generic import HARUKA_VER_TEMPLATE
 from hapyka.utils.handlers.HaruHandler import HaruHandler
 from hapyka.utils.tg_utils import reply_text
 from __main__ import version, release

@@ -22,4 +22,6 @@ for handler_type, handlers_list in handlers_classes.items():
     for ahandler in handlers_list:
         if handler_type not in handlers:
             handlers[handler_type] = []
-        handlers[handler_type].append(ahandler())
+        handler = ahandler()
+        if handler.enabled:
+            handlers[handler_type].append(handler)
