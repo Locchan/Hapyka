@@ -15,8 +15,8 @@ class Config:
     def __init__(self):
         logger.info("Getting secrets...")
         self.config = {}
-        self.secret_id = os.environ.get('SECRET_ID') or ""
-        self.role_id = os.environ.get('ROLE_ID') or ""
+        self.secret_id = os.environ.get('VAULT_SECRET_ID') or ""
+        self.role_id = os.environ.get('VAULT_ROLE_ID') or ""
         self.vault_addr = os.environ.get('VAULT_ADDR') or ""
         self.vault_port = os.environ.get('VAULT_PORT') or ""
         self.login()
