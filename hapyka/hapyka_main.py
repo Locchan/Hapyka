@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 import datetime
 
+from hapyka.utils.Config import Config
+
 start_time = datetime.datetime.now()
-config_container = None
+config_container = Config()
 version = "0.0.1c"
 release = "Press F to pay respects to NKVD-bot (R.I.P 2017-2022)"
 
-import hapyka.utils.config
 import logging
 import sys
 

@@ -22,4 +22,4 @@ RUN python3 ./setup.py install
 
 RUN yum -y remove python3-devel tree gcc gcc-c++
 
-ENTRYPOINT python3 /opt/hapyka/hapyka/hapyka.py
+ENTRYPOINT python3 /opt/hapyka/hapyka/hapyka_main.py

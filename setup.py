@@ -12,7 +12,8 @@ setup(
     author_email='locchan@yandex.ru',
     install_requires=[
         'python-telegram-bot',
+        'hvac'
     ],
-    scripts=['hapyka/hapyka.py'],
+    scripts=['hapyka/hapyka_main.py'],
     description='Hapyka. Python implementation of Haruka tg bot'
 )
