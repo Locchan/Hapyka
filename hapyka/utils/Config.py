@@ -3,8 +3,8 @@ import os
 from hvac import Client
 from hvac.api.auth_methods.approle import AppRole
 from hvac.adapters import JSONAdapter
-from hapyka.utils.logger import get_logger
-
+from hapyka.utils.logger import get_logger, setdebug
+import traceback
 logger = get_logger()
 import __main__
 
@@ -13,6 +13,11 @@ CONFIG_PATH = "kv/data/services/telegram_bots/hapyka/config"
 
 class Config:
     def __init__(self):
+        global logger
+        self.debug = os.environ.get('DEBUG') or ""
+        if self.debug:
+            setdebug()
+            logger = get_logger()
         logger.info("Getting secrets...")
         self.config = {}
         self.secret_id = os.environ.get('VAULT_SECRET_ID') or ""
@@ -27,7 +32,7 @@ class Config:
         try:
             if not self.secret_id or not self.role_id or not self.vault_port or not self.vault_port:
                 raise RuntimeError("Cannot log in to vault: Insufficient config data.")
-            url = "https://{}:{}".format(self.vault_addr, self.vault_port)
+            url = "{}:{}".format(self.vault_addr, self.vault_port)
             adapter = JSONAdapter(base_uri=url)
             approle = AppRole(adapter=adapter)
             resp = approle.login(self.role_id, secret_id=self.secret_id)
@@ -46,6 +51,7 @@ class Config:
                 exit(1)
         except Exception as e:
             logger.error("Could not login to vault: {}".format(e.__class__.__name__))
+            logger.debug(traceback.format_exc())
             exit(1)
 
     def pre_start_check(self):

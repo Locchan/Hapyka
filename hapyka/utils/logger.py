@@ -7,6 +7,8 @@ loggers = {
 
 }
 
+level = logging.INFO
+
 
 def get_stream_handler():
     stream_handler = logging.StreamHandler(sys.stdout)
@@ -16,11 +18,18 @@ def get_stream_handler():
 
 
 def get_logger(name="Hapyka"):
+    global level
     if name in loggers:
-        return loggers[name]
-    else:
-        logger = logging.getLogger(name)
-        logger.setLevel(logging.INFO)
+        if loggers[name].level == level:
+            return loggers[name]
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    if name not in loggers:
         logger.addHandler(get_stream_handler())
-        loggers[name] = logger
-        return loggers[name]
+    loggers[name] = logger
+    return loggers[name]
+
+
+def setdebug():
+    global level
+    level = logging.DEBUG
