@@ -19,6 +19,7 @@ class Config:
         self.role_id = os.environ.get('VAULT_ROLE_ID') or ""
         self.vault_addr = os.environ.get('VAULT_ADDR') or ""
         self.vault_port = os.environ.get('VAULT_PORT') or ""
+        self.pre_start_check()
         self.login()
         logger.info("Done getting secrets.")
 
@@ -46,6 +47,27 @@ class Config:
         except Exception as e:
             logger.error("Could not login to vault: {}".format(e.__class__.__name__))
             exit(1)
+
+    def pre_start_check(self):
+        logger.info("Checking start requirements...")
+        ok = True
+        if not self.secret_id:
+            logger.error("Secret ID is not present")
+            ok = False
+        if not self.role_id:
+            logger.error("Role ID is not present")
+            ok = False
+        if not self.vault_addr:
+            logger.error("Vault address is not present")
+            ok = False
+        if not self.vault_port:
+            logger.error("Vault port is not present")
+            ok = False
+        if not ok:
+            logger.error("Start requirements are not satisfied. Cannot start.")
+            exit(1)
+        else:
+            logger.info("Start requirements satisfied. Moving on...")
 
     def get(self, path):
         if path in self.config:
