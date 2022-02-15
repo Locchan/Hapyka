@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+cd /opt
+python3 /opt/setup.py build_py
+python3 /opt/setup.py install
+
+cd /
+
+rm -rf opt/*
