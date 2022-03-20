@@ -5,7 +5,7 @@ from hapyka.utils.Config import Config
 
 start_time = datetime.datetime.now()
 config_container = Config()
-version = "0.0.1c"
+version = "0.0.1e"
 release = "Press F to pay respects to NKVD-bot (R.I.P 2017-2022)"
 
 import logging

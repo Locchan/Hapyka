@@ -2,7 +2,8 @@ from __main__ import config_container
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 import hapyka.utils.logger
-from hapyka.dictionaries.generic import REPOSTER_CAPTION_TEMPLATE, REPOSTER_DISCARD_CALLBACK_DATA
+from hapyka.dictionaries.generic import REPOSTER_CAPTION_TEMPLATE, REPOSTER_DISCARD_CALLBACK_DATA, \
+    REPOSTER_CAPTION_TEMPLATE_ANONYMOUS, REPOSTER_INLINE_MARKER
 from hapyka.dictionaries.internal import HANDLERS_REPOSTER_DISCARD
 from hapyka.utils.handlers.HaruHandler import HaruHandler
 from hapyka.utils.tg_utils import get_sender_by_update, get_chat_by_update
@@ -18,11 +19,15 @@ class Reposter(HaruHandler):
         self.reposter_from = None
         self.reposter_to = None
         self.reposter_control = None
+        self.reposter_anon = None
         super().__init__()
 
     def enable(self):
         if not enabled:
             return False, "Disabled manually"
+        self.reposter_anon = config_container.get("reposter/anon")
+        if not self.reposter_anon or self.reposter_anon is None or not isinstance(self.reposter_anon, list):
+            return False, "Misconfigured reposter/anon"
         self.reposter_from = config_container.get("reposter/from")
         if not self.reposter_from or self.reposter_from is None or not isinstance(self.reposter_from, list):
             return False, "Misconfigured reposter/from"
@@ -37,7 +42,8 @@ class Reposter(HaruHandler):
     def generate_markup(self):
         keyboard = [[]]
         for achat in self.reposter_to:
-            keyboard[0].append(InlineKeyboardButton(text=achat[1], callback_data=achat[0]))
+            keyboard[0].append(InlineKeyboardButton(text=achat[1], callback_data="{}{}".format(REPOSTER_INLINE_MARKER,
+                                                                                               achat[0])))
         keyboard[0].append(
             InlineKeyboardButton(text=HANDLERS_REPOSTER_DISCARD, callback_data=REPOSTER_DISCARD_CALLBACK_DATA))
         markup = InlineKeyboardMarkup(inline_keyboard=keyboard, one_time_keyboard=True, resize_keyboard=True)
