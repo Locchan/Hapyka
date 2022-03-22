@@ -3,16 +3,23 @@ import sys
 
 _log_format = "%(asctime)s - [%(levelname)-7s] - Hapyka: %(filename)32s:%(lineno)-3s | %(message)s"
 
+log_path = "/var/log/Hapyka.log"
+
 loggers = {}
 
 default_level = logging.INFO
 
 
-def get_stream_handler(level=logging.INFO):
+def get_stream_handlers(level=logging.INFO):
     stream_handler = logging.StreamHandler(sys.stdout)
     stream_handler.setLevel(level)
     stream_handler.setFormatter(logging.Formatter(_log_format))
-    return stream_handler
+
+    stream_handler_file = logging.FileHandler(log_path)
+    stream_handler_file.setLevel(level)
+    stream_handler_file.setFormatter(logging.Formatter(_log_format))
+
+    return stream_handler, stream_handler_file
 
 
 def get_logger(name="Hapyka", level=None):
@@ -25,7 +32,8 @@ def get_logger(name="Hapyka", level=None):
     logger = logging.getLogger(name)
     logger.setLevel(level)
     logger.handlers = []
-    logger.addHandler(get_stream_handler(level))
+    for ahandler in get_stream_handlers(level):
+        logger.addHandler(ahandler)
     loggers[name] = logger
     return loggers[name]
 
