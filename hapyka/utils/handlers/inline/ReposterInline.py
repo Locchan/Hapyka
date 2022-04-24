@@ -23,7 +23,10 @@ class ReposterInline(HaruHandler):
         if not callback_data.startswith(REPOSTER_INLINE_MARKER):
             return
         logger.info("Reposter: Processing inline update.")
-        callback_data = int(callback_data.replace(REPOSTER_INLINE_MARKER, ''))
+        try:
+            callback_data = int(callback_data.replace(REPOSTER_INLINE_MARKER, ''))
+        except ValueError:
+            callback_data = callback_data.replace(REPOSTER_INLINE_MARKER, '')
         if callback_data == REPOSTER_DISCARD_CALLBACK_DATA:
             context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.callback_query.message.message_id)
             logger.info("Reposter: Discarding.")

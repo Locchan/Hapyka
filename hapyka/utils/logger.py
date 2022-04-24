@@ -1,9 +1,13 @@
 import logging
 import sys
+import os
 
 _log_format = "%(asctime)s - [%(levelname)-7s] - Hapyka: %(filename)32s:%(lineno)-3s | %(message)s"
 
-log_path = "/var/log/Hapyka.log"
+if os.name == 'nt':
+    log_path = "Haruka.log"
+else:
+    log_path = "/var/log/Hapyka.log"
 
 loggers = {}
 

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Hapyka',
-    version='0.0.1e',
+    version='0.0.1f',
     packages=['hapyka', 'hapyka.utils', 'hapyka.utils.handlers', 'hapyka.utils.handlers.text',
               'hapyka.utils.handlers.image', 'hapyka.utils.handlers.inline', 'hapyka.utils.handlers.command',
               'hapyka.classes', 'hapyka.dictionaries'],

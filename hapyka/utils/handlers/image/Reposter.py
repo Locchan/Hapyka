@@ -3,7 +3,7 @@ from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 import hapyka.utils.logger
 from hapyka.dictionaries.generic import REPOSTER_CAPTION_TEMPLATE, REPOSTER_DISCARD_CALLBACK_DATA, \
-    REPOSTER_CAPTION_TEMPLATE_ANONYMOUS, REPOSTER_INLINE_MARKER
+    REPOSTER_CAPTION_TEMPLATE_ANONYMOUS, REPOSTER_INLINE_MARKER, REPOSTER_DISCARD_CALLBACK_DATA_MARKED
 from hapyka.dictionaries.internal import HANDLERS_REPOSTER_DISCARD
 from hapyka.utils.handlers.HaruHandler import HaruHandler
 from hapyka.utils.tg_utils import get_sender_by_update, get_chat_by_update
@@ -45,7 +45,7 @@ class Reposter(HaruHandler):
             keyboard[0].append(InlineKeyboardButton(text=achat[1], callback_data="{}{}".format(REPOSTER_INLINE_MARKER,
                                                                                                achat[0])))
         keyboard[0].append(
-            InlineKeyboardButton(text=HANDLERS_REPOSTER_DISCARD, callback_data=REPOSTER_DISCARD_CALLBACK_DATA))
+            InlineKeyboardButton(text=HANDLERS_REPOSTER_DISCARD, callback_data=REPOSTER_DISCARD_CALLBACK_DATA_MARKED))
         markup = InlineKeyboardMarkup(inline_keyboard=keyboard, one_time_keyboard=True, resize_keyboard=True)
         return markup
 
