@@ -1,3 +1,4 @@
+import telegram
 from telegram.ext import Updater, MessageHandler, Filters, CallbackQueryHandler
 
 from hapyka.utils.handlers.CommonHandler import CommonHandler
@@ -27,5 +28,7 @@ class Haruka:
     def handle_exception(self, update, context):
         try:
             raise context.error
+        except telegram.error.NetworkError:
+            logger.warning("Telegram servers dropped the connection. Will auto-reconnect")
         except Exception as e:
             logger.exception(e)

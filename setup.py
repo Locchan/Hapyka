@@ -11,7 +11,7 @@ setup(
     author='Siarhei_Tsitou1',
     author_email='locchan@yandex.ru',
     install_requires=[
-        'python-telegram-bot',
+        'python-telegram-bot>=13, <20',
         'hvac'
     ],
     scripts=['hapyka/hapyka_main.py'],
