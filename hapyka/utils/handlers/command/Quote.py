@@ -3,7 +3,7 @@ import datetime
 import telegram
 
 from hapyka.database.models.QuoteModel import QuoteModel
-from hapyka.dictionaries.generic import WHERE_IS_THE_MESSAGE, QUOTED
+from hapyka.dictionaries.generic import WHERE_IS_THE_MESSAGE, QUOTED, NOTHING_INTERESTING_HERE
 from hapyka.database.db import get_transaction
 from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text, get_sender_by_message
@@ -20,11 +20,15 @@ class Quote(CommandHandler):
     def handle_impl(self, update: telegram.Update, context):
         session, session_transaction = get_transaction()
         msg_to_quote = update.message.reply_to_message
+        if msg_to_quote.from_user.is_bot:
+            reply_text(update, context, NOTHING_INTERESTING_HERE)
+            return
         msg_to_quote_text = msg_to_quote.text
         if not msg_to_quote_text or msg_to_quote_text is None:
             msg_to_quote_text = msg_to_quote.caption
             if not msg_to_quote_text or msg_to_quote_text is None:
                 reply_text(update, context, WHERE_IS_THE_MESSAGE)
+                return
         quoted_by = update.message.from_user.id
         written_by = msg_to_quote.from_user.id
         when_quoted = datetime.datetime.utcnow()
