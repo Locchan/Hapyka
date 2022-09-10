@@ -28,7 +28,11 @@ class Haruka:
     def handle_exception(self, update, context):
         try:
             raise context.error
+        except telegram.error.Conflict:
+            logger.warning("Conflicting with another instance! Kill other instances!")
         except telegram.error.NetworkError:
             logger.warning("Telegram servers dropped the connection. Will auto-reconnect")
+        except telegram.error.RetryAfter:
+            pass
         except Exception as e:
             logger.exception(e)
