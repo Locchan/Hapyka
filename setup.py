@@ -2,13 +2,13 @@ from setuptools import setup
 
 setup(
     name='Hapyka',
-    version='1.0.2b',
-    packages=['hapyka', 'hapyka.utils', 'hapyka.utils.handlers', 'hapyka.utils.handlers.text',
+    version='1.1.0',
+    packages=['hapyka', 'hapyka.config', 'hapyka.utils', 'hapyka.utils.handlers', 'hapyka.utils.handlers.text',
               'hapyka.utils.handlers.image', 'hapyka.utils.handlers.inline', 'hapyka.utils.handlers.command',
               'hapyka.classes', 'hapyka.dictionaries', 'hapyka.database', 'hapyka.database.models'],
     url='https://github.com/LkkCcc/Hapyka',
     license='GPLv2',
-    author='Siarhei_Tsitou1',
+    author='Locchan',
     author_email='locchan@yandex.ru',
     install_requires=[
         'python-telegram-bot>=13, <20',

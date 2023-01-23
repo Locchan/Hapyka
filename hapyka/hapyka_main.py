@@ -1,14 +1,17 @@
 #!/usr/bin/env python
+from hapyka.config.Config import decide_config_provider
+
+print("Starting Hapyka...")
+
 import datetime
 
-from hapyka.utils.Config import Config
-
 start_time = datetime.datetime.now()
-config_container = Config()
-version = "1.0.2 (release 3b)"
+print("Getting config...")
+config_provider = decide_config_provider()
+
+version = "1.1.0 (release 5)"
 release = '''
-Quotes!
-Press F to pay respects to NKVD-bot (R.I.P 2017-2022)
+Reposter update.
 '''
 
 import logging
@@ -24,7 +27,7 @@ from hapyka.classes.Haruka import Haruka
 
 handler = logging.StreamHandler(sys.stdout)
 
-bot_token = config_container.get("bot_tg_token")
+bot_token = config_provider.get("bot_tg_token")
 bot = Haruka(bot_token)
 
 finished_loading_time = datetime.datetime.now()

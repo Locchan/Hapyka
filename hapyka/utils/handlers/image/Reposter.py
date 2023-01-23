@@ -1,4 +1,4 @@
-from __main__ import config_container
+from __main__ import config_provider
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 import hapyka.utils.logger
@@ -25,16 +25,16 @@ class Reposter(HaruHandler):
     def enable(self):
         if not enabled:
             return False, "Disabled manually"
-        self.reposter_anon = config_container.get("reposter/anon")
+        self.reposter_anon = config_provider.get("reposter/anon")
         if not self.reposter_anon or self.reposter_anon is None or not isinstance(self.reposter_anon, list):
             return False, "Misconfigured reposter/anon"
-        self.reposter_from = config_container.get("reposter/from")
+        self.reposter_from = config_provider.get("reposter/from")
         if not self.reposter_from or self.reposter_from is None or not isinstance(self.reposter_from, list):
             return False, "Misconfigured reposter/from"
-        self.reposter_to = config_container.get("reposter/to")
+        self.reposter_to = config_provider.get("reposter/to")
         if not self.reposter_to or self.reposter_to is None or not isinstance(self.reposter_to, list):
             return False, "Misconfigured reposter/to"
-        self.reposter_control = config_container.get("reposter/control")
+        self.reposter_control = config_provider.get("reposter/control")
         if not self.reposter_control or self.reposter_control is None or not isinstance(self.reposter_control, list):
             return False, "Misconfigured reposter/control"
         return True

@@ -5,14 +5,14 @@ import sqlalchemy.exc
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from __main__ import config_container
+from __main__ import config_provider
 
 from hapyka.utils.logger import get_logger
 
 if os.name == 'nt':
     db_path = "C:\\tmp\\hapyka.sqlite"
 else:
-    db_path = config_container.get("database_path")
+    db_path = config_provider.get("database_path")
 
 logger = get_logger()
 

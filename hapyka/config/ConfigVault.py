@@ -3,6 +3,7 @@ import os
 from hvac import Client
 from hvac.api.auth_methods.approle import AppRole
 from hvac.adapters import JSONAdapter
+
 from hapyka.utils.logger import get_logger, setdebug
 import traceback
 logger = get_logger()
@@ -11,24 +12,24 @@ import __main__
 CONFIG_PATH = "kv/data/services/telegram_bots/hapyka/config"
 
 
-class Config:
+class ConfigVault:
     def __init__(self):
         global logger
+        self.config = None
         self.debug = os.environ.get('DEBUG') or ""
         if self.debug:
             setdebug()
             logger = get_logger()
         logger.info("Getting secrets...")
-        self.config = {}
         self.secret_id = os.environ.get('VAULT_SECRET_ID') or ""
         self.role_id = os.environ.get('VAULT_ROLE_ID') or ""
         self.vault_addr = os.environ.get('VAULT_ADDR') or ""
         self.vault_port = os.environ.get('VAULT_PORT') or ""
         self.pre_start_check()
-        self.login()
+        self.get_config()
         logger.info("Done getting secrets.")
 
-    def login(self):
+    def get_config(self):
         try:
             if not self.secret_id or not self.role_id or not self.vault_port or not self.vault_port:
                 raise RuntimeError("Cannot log in to vault: Insufficient config data.")
@@ -58,20 +59,20 @@ class Config:
         logger.info("Checking start requirements...")
         ok = True
         if not self.secret_id:
-            logger.error("Secret ID is not present")
+            logger.warning("Secret ID is not present")
             ok = False
         if not self.role_id:
-            logger.error("Role ID is not present")
+            logger.warning("Role ID is not present")
             ok = False
         if not self.vault_addr:
-            logger.error("Vault address is not present")
+            logger.warning("Vault address is not present")
             ok = False
         if not self.vault_port:
-            logger.error("Vault port is not present")
+            logger.warning("Vault port is not present")
             ok = False
         if not ok:
-            logger.error("Start requirements are not satisfied. Cannot start.")
-            exit(1)
+            logger.warning("Start requirements are not satisfied.")
+            raise
         else:
             logger.info("Start requirements satisfied. Moving on...")
 

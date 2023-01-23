@@ -7,6 +7,7 @@ REPOSTER_CAPTION_TEMPLATE = "Posted by {} in «{}»"
 REPOSTER_CAPTION_REGEX = r'Posted by (.*) in «(.*)»'
 REPOSTER_CAPTION_TEMPLATE_ANONYMOUS = "Posted in «{}»"
 WHO_TEMPLATE = "User: {}\nChat: {}"
+REPOSTER_QUEUE_TEMPLATE = "There are {} pictures in reposter's queue."
 
 WHERE_IS_THE_MESSAGE = "Не понимаю. Что записать то?"
 NO_QUOTES = "Этот (эта) ещё ничего эдакого не сказал(а)."
