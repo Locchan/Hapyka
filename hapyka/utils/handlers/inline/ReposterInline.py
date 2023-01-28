@@ -44,7 +44,7 @@ class ReposterInline(HaruHandler):
             else:
                 caption_fragments = list(re.search(REPOSTER_CAPTION_REGEX, update.callback_query.message.caption).groups())
                 caption_post = REPOSTER_CAPTION_TEMPLATE.format("??????????", caption_fragments[1])
-                with open("{}/{}.txt".format(self.reposter_dir, file_id)) as caption_file:
+                with open("{}/{}.txt".format(self.reposter_dir, file_id), "w") as caption_file:
                     caption_file.write("{}\n{}".format(callback_data, caption_post))
                 logger.info("Reposter: Anonymous file saved")
             context.bot.delete_message(chat_id=update.effective_chat.id,

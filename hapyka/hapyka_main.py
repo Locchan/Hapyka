@@ -9,7 +9,7 @@ start_time = datetime.datetime.now()
 print("Getting config...")
 config_provider = decide_config_provider()
 
-version = "1.1.0 (release 5)"
+version = "1.1.1 (release 5)"
 release = '''
 Reposter update.
 '''
