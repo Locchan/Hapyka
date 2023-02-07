@@ -1,5 +1,5 @@
 from hapyka.dictionaries.generic import START_MESSAGE
-from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
+from hapyka.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text
 
 enabled = True

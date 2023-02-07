@@ -1,11 +1,9 @@
-from telegram.ext import CommandHandler
-
 from hapyka.dictionaries.internal import HANDLERS_IMAGES_LABEL, HANDLERS_COMMANDS_LABEL, HANDLERS_TEXT_LABEL, \
     HANDLERS_INLINE_LABEL
-from hapyka.utils.handlers.command import command_handlers
-from hapyka.utils.handlers.image import image_handlers
-from hapyka.utils.handlers.inline import inline_handlers
-from hapyka.utils.handlers.text import text_handlers
+from hapyka.handlers.command import command_handlers
+from hapyka.handlers.image import image_handlers
+from hapyka.handlers.inline import inline_handlers
+from hapyka.handlers.text import text_handlers
 from hapyka.utils.logger import get_logger
 
 logger = get_logger()
@@ -17,6 +15,8 @@ created_objs = []
 
 def check_obj_exists(aclass):
     for anobj in created_objs:
+        print(type(aclass))
+        print(aclass.__name__)
         if isinstance(anobj, aclass):
             return anobj
     return False

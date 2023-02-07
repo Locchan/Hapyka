@@ -5,13 +5,11 @@ import hapyka.utils.logger
 from hapyka.dictionaries.generic import REPOSTER_CAPTION_TEMPLATE, REPOSTER_INLINE_MARKER, \
     REPOSTER_DISCARD_CALLBACK_DATA_MARKED
 from hapyka.dictionaries.internal import HANDLERS_REPOSTER_DISCARD
-from hapyka.utils.handlers.HaruHandler import HaruHandler
+from hapyka.handlers.HaruHandler import HaruHandler
 from hapyka.utils.tg_utils import get_sender_by_update, get_chat_by_update
 
 enabled = True
 logger = hapyka.utils.logger.get_logger()
-reposter_from_label = "reposter/from"
-reposter_to_label = "reposter/to"
 
 
 class Reposter(HaruHandler):

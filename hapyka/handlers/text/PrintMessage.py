@@ -1,5 +1,5 @@
 from hapyka.dictionaries.generic import MESSAGE_PRINT_TEMPLATE
-from hapyka.utils.handlers.HaruHandler import HaruHandler
+from hapyka.handlers.HaruHandler import HaruHandler
 from hapyka.utils.logger import get_logger
 from hapyka.utils.tg_utils import get_sender_by_update, get_chat_by_update
 

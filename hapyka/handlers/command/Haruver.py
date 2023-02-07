@@ -1,5 +1,5 @@
 from hapyka.dictionaries.generic import HARUKA_VER_TEMPLATE
-from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
+from hapyka.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text
 from __main__ import version, release
 enabled = True

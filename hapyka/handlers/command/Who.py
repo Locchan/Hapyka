@@ -1,8 +1,7 @@
 from hapyka.dictionaries.generic import WHO_TEMPLATE
-from hapyka.utils.handlers.HaruHandler import HaruHandler
-from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
+from hapyka.handlers.HaruHandler import HaruHandler
+from hapyka.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text, get_chat_by_update, get_sender_by_update, get_sender_by_message
-from __main__ import version, release
 
 enabled = True
 

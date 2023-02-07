@@ -1,21 +1,23 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from hapyka.config.Config import decide_config_provider
-
-print("Starting Hapyka...")
-
+from hapyka.utils.logger import get_logger
 import datetime
 
-start_time = datetime.datetime.now()
-print("Getting config...")
-config_provider = decide_config_provider()
-
-version = "1.1.2 (релиз 6)"
+version = "1.1.2.1"
 release = '''
-Апдейт репостера.
+Релиз 6: Апдейт репостера.
 - Теперь репостит рандомную картинку из списка, а не первую по алфавиту.
 - Скорость постинга репостера теперь меняется в зависимости от размера очереди.
 - Команда /queue (/reposter_queue) заменена на команду /reposter и теперь выводит всю информацию о состоянии репостера.
 '''
+
+logger = get_logger()
+logger.info("Starting Hapyka {}...".format(version))
+
+
+start_time = datetime.datetime.now()
+logger.info("Getting config...")
+config_provider = decide_config_provider()
 
 import logging
 import sys

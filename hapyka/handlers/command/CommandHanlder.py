@@ -1,4 +1,4 @@
-from hapyka.utils.handlers.HaruHandler import HaruHandler
+from hapyka.handlers.HaruHandler import HaruHandler
 
 
 class CommandHandler(HaruHandler):

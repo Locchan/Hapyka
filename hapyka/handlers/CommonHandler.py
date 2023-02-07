@@ -1,6 +1,6 @@
 from hapyka.dictionaries.internal import HANDLERS_TEXT_LABEL, HANDLERS_IMAGES_LABEL, HANDLERS_COMMANDS_LABEL, \
     HANDLERS_INLINE_LABEL
-from hapyka.utils.handlers import handlers
+from hapyka.handlers import handlers
 
 
 class CommonHandler:

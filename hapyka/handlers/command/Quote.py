@@ -5,7 +5,7 @@ import telegram
 from hapyka.database.models.QuoteModel import QuoteModel
 from hapyka.dictionaries.generic import WHERE_IS_THE_MESSAGE, QUOTED, NOTHING_INTERESTING_HERE
 from hapyka.database.db import get_transaction
-from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
+from hapyka.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text, get_sender_by_message
 
 enabled = True

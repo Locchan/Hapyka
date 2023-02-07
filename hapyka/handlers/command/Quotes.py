@@ -5,7 +5,7 @@ import telegram
 from hapyka.database.models.QuoteModel import QuoteModel
 from hapyka.dictionaries.generic import QUOTES_TMPL, NO_QUOTES, NO_QUOTES_SELF, NOTHING_INTERESTING_HERE
 from hapyka.database.db import get_transaction
-from hapyka.utils.handlers.command.CommandHanlder import CommandHandler
+from hapyka.handlers.command.CommandHanlder import CommandHandler
 from hapyka.utils.tg_utils import reply_text
 
 enabled = True

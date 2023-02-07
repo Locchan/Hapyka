@@ -17,6 +17,7 @@ last_repost = time()
 logger = get_logger()
 reposter_dir = config_provider.get("reposter/directory")
 
+
 def get_pics_to_repost():
     return [f for f in os.listdir(reposter_dir) if ".png" in f]
 
@@ -36,8 +37,9 @@ def calculate_reposter_speed(pics_to_repost=None):
 
 def get_reposter_status():
     pics_to_repost = get_pics_to_repost()
-    return calculate_reposter_speed(pics_to_repost), reposter_speed_start, reposter_speed_rate,\
-        reposter_speed_increase, reposter_speed_default, reposter_speed_max
+    return (calculate_reposter_speed(pics_to_repost), len(pics_to_repost), reposter_speed_start, reposter_speed_rate,
+            reposter_speed_increase, reposter_speed_default, reposter_speed_max)
+
 
 def reposter_repost_picture(update, context):
     global last_repost, reposter_speed

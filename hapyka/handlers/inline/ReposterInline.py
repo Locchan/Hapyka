@@ -3,7 +3,7 @@ import os
 
 from hapyka.dictionaries.generic import REPOSTER_DISCARD_CALLBACK_DATA, REPOSTER_CAPTION_REGEX, \
     REPOSTER_CAPTION_TEMPLATE, REPOSTER_INLINE_MARKER
-from hapyka.utils.handlers.HaruHandler import HaruHandler
+from hapyka.handlers.HaruHandler import HaruHandler
 from __main__ import config_provider
 from hapyka.utils.logger import get_logger
 

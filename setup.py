@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
     name='Hapyka',
-    version='1.1.2',
-    packages=['hapyka', 'hapyka.config', 'hapyka.utils', 'hapyka.utils.handlers', 'hapyka.utils.handlers.text',
-              'hapyka.utils.handlers.image', 'hapyka.utils.handlers.inline', 'hapyka.utils.handlers.command',
+    version='1.1.2.1',
+    packages=['hapyka', 'hapyka.config', 'hapyka.utils', 'hapyka.handlers', 'hapyka.handlers.text',
+              'hapyka.handlers.image', 'hapyka.handlers.inline', 'hapyka.handlers.command',
               'hapyka.classes', 'hapyka.dictionaries', 'hapyka.database', 'hapyka.database.models'],
     url='https://github.com/LkkCcc/Hapyka',
     license='GPLv2',

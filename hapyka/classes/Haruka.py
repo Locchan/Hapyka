@@ -1,7 +1,7 @@
 import telegram
 from telegram.ext import Updater, MessageHandler, Filters, CallbackQueryHandler
 
-from hapyka.utils.handlers.CommonHandler import CommonHandler
+from hapyka.handlers.CommonHandler import CommonHandler
 from hapyka.utils.logger import get_logger
 
 logger = get_logger()
