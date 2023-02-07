@@ -6,8 +6,18 @@ REPOSTER_DISCARD_CALLBACK_DATA_MARKED = REPOSTER_INLINE_MARKER + REPOSTER_DISCAR
 REPOSTER_CAPTION_TEMPLATE = "Posted by {} in «{}»"
 REPOSTER_CAPTION_REGEX = r'Posted by (.*) in «(.*)»'
 REPOSTER_CAPTION_TEMPLATE_ANONYMOUS = "Posted in «{}»"
-WHO_TEMPLATE = "User: {}\nChat: {}"
-REPOSTER_QUEUE_TEMPLATE = "There are {} pictures in reposter's queue."
+WHO_TEMPLATE = "Пользователь: {}\nЧат: {}"
+REPOSTER_STATUS_TEMPLATE = \
+"""
+Скорость репостера: каждые {} секунд.
+Размер очереди:
+Настройки:
+ - Размер очереди для начала ускорения: > {} пикч.
+ - Размер пачки: {} пикч.
+ - Ускорение с каждой пачкой свыше лимита: {} секунд.
+ - Дефолтная скорость: каждые {} секунд.
+ - Максимальная скорость: каждые {} секунд.
+"""
 
 WHERE_IS_THE_MESSAGE = "Не понимаю. Что записать то?"
 NO_QUOTES = "Этот (эта) ещё ничего эдакого не сказал(а)."

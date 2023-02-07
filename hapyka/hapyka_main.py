@@ -9,9 +9,12 @@ start_time = datetime.datetime.now()
 print("Getting config...")
 config_provider = decide_config_provider()
 
-version = "1.1.1 (release 5)"
+version = "1.1.2 (релиз 6)"
 release = '''
-Reposter update.
+Апдейт репостера.
+- Теперь репостит рандомную картинку из списка, а не первую по алфавиту.
+- Скорость постинга репостера теперь меняется в зависимости от размера очереди.
+- Команда /queue (/reposter_queue) заменена на команду /reposter и теперь выводит всю информацию о состоянии репостера.
 '''
 
 import logging
