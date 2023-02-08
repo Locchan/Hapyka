@@ -3,7 +3,7 @@ import sys
 import os
 from os import W_OK
 
-_log_format = "%(asctime)s - [%(levelname)-7s] - Hapyka: %(filename)32s:%(lineno)-3s | %(message)s"
+_log_format = "%(asctime)s - [%(levelname)-7s] - Hapyka (%(threadName)-10s): %(filename)32s:%(lineno)-3s | %(message)s"
 
 if os.name == 'nt' or not os.access("/var/log/", W_OK):
     log_path = "Haruka.log"

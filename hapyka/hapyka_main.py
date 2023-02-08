@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 from hapyka.config.Config import decide_config_provider
-from hapyka.utils.logger import get_logger
+from hapyka.utils.logger import get_logger, setdebug
 import datetime
 
-version = "1.1.2.1"
+version = "1.1.3.0"
 release = '''
-Релиз 6: Апдейт репостера.
-- Теперь репостит рандомную картинку из списка, а не первую по алфавиту.
-- Скорость постинга репостера теперь меняется в зависимости от размера очереди.
-- Команда /queue (/reposter_queue) заменена на команду /reposter и теперь выводит всю информацию о состоянии репостера.
+Релиз 7: Апдейт репостера #2.
+- Репостер теперь не зависит от приходящих апдейтов и работает по внутреннему таймеру.
 '''
 
 logger = get_logger()
@@ -18,6 +16,9 @@ logger.info("Starting Hapyka {}...".format(version))
 start_time = datetime.datetime.now()
 logger.info("Getting config...")
 config_provider = decide_config_provider()
+
+if config_provider.get("debug"):
+    setdebug()
 
 import logging
 import sys
@@ -31,10 +32,12 @@ initialize()
 from hapyka.classes.Haruka import Haruka
 
 handler = logging.StreamHandler(sys.stdout)
-
 bot_token = config_provider.get("bot_tg_token")
-bot = Haruka(bot_token)
+hapyka = Haruka(bot_token)
 
+from hapyka.utils.chrono_threading import start_chrono_threads
+
+start_chrono_threads()
 finished_loading_time = datetime.datetime.now()
 load_time = "{:.2f}".format(finished_loading_time.timestamp() - start_time.timestamp())
 

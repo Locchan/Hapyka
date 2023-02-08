@@ -41,9 +41,13 @@ def get_reposter_status():
             reposter_speed_increase, reposter_speed_default, reposter_speed_max)
 
 
-def reposter_repost_picture(update, context):
+def reposter_repost_picture():
+    from __main__ import hapyka
     global last_repost, reposter_speed
-    if time() - last_repost < reposter_speed:
+    passed_time = time() - last_repost
+    if passed_time < reposter_speed:
+        logger.debug("RP: Not reposting. {} (rounded) secs passed. {} secs needed.".format(int(passed_time),
+                                                                                           reposter_speed))
         return
     pics_to_repost = get_pics_to_repost()
     reposter_speed = calculate_reposter_speed(pics_to_repost)
@@ -61,10 +65,10 @@ def reposter_repost_picture(update, context):
                 lines = caption_file.readlines()
                 chat = lines[0]
                 caption = "\n".join(lines[1:])
-        context.bot.send_photo(chat, photo=open(apicture_path, "rb"), caption=caption)
+        hapyka.bot.send_photo(chat, photo=open(apicture_path, "rb"), caption=caption)
         logger.info("Reposting {}...".format(random_pic))
         os.remove(apicture_path)
         os.remove(apicture_path_txt)
         last_repost = time()
     else:
-        logger.info("No pictures to repost.")
+        logger.debug("RP: No pictures to repost.")

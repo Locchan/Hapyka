@@ -13,6 +13,7 @@ class Haruka:
         self.token = token
         self.common_handler = CommonHandler()
         self.upd_obj = Updater(token=self.token, use_context=True)
+        self.bot = telegram.Bot(token=self.token)
         self.start_bot()
         logger.info("Done starting bot.")
 

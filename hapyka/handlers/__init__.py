@@ -15,8 +15,6 @@ created_objs = []
 
 def check_obj_exists(aclass):
     for anobj in created_objs:
-        print(type(aclass))
-        print(aclass.__name__)
         if isinstance(anobj, aclass):
             return anobj
     return False

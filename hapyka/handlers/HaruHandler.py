@@ -1,8 +1,7 @@
 from hapyka.utils.logger import get_logger
-from hapyka.utils.reposter import reposter_repost_picture
 
 logger = get_logger()
-do_on_every_update = [reposter_repost_picture]
+do_on_every_update = []
 
 
 class HaruHandler:
