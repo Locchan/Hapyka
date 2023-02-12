@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='Hapyka',
-    version='1.1.3.0',
+    version='1.1.4.0',
     packages=['hapyka', 'hapyka.config', 'hapyka.utils', 'hapyka.handlers', 'hapyka.handlers.text',
               'hapyka.handlers.image', 'hapyka.handlers.inline', 'hapyka.handlers.command',
               'hapyka.classes', 'hapyka.dictionaries', 'hapyka.database', 'hapyka.database.models'],
@@ -13,7 +13,8 @@ setup(
     install_requires=[
         'python-telegram-bot>=13, <20',
         'hvac',
-        'sqlalchemy'
+        'sqlalchemy',
+        'mysql-connector-python'
     ],
     scripts=['hapyka/hapyka_main.py'],
     description='Hapyka. Python implementation of Haruka tg bot'

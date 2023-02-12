@@ -3,10 +3,10 @@ from hapyka.config.Config import decide_config_provider
 from hapyka.utils.logger import get_logger, setdebug
 import datetime
 
-version = "1.1.3.0"
+version = "1.1.4.0"
 release = '''
-Релиз 7: Апдейт репостера #2.
-- Репостер теперь не зависит от приходящих апдейтов и работает по внутреннему таймеру.
+Релиз 8: MySQL.
+В рамках перевода всей инфраструктуры на MySQL, Харука теперь тоже туда работает.
 '''
 
 logger = get_logger()

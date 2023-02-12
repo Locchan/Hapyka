@@ -1,6 +1,3 @@
-import os.path
-import sqlite3
-
 import sqlalchemy.exc
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
@@ -9,22 +6,13 @@ from __main__ import config_provider
 
 from hapyka.utils.logger import get_logger
 
-if os.name == 'nt':
-    db_path = "C:\\tmp\\hapyka.sqlite"
-else:
-    db_path = config_provider.get("database_path")
+db_login = config_provider.get("database_login")
+db_password = config_provider.get("database_password")
+db_schema = config_provider.get("database_schema")
+db_address = config_provider.get("database_address")
+db_port = config_provider.get("database_port")
 
 logger = get_logger()
-
-if db_path is None:
-    logger.error("Cannot start with None database. Check your configuration.")
-    exit(1)
-
-if not os.path.exists(db_path):
-    logger.info("Database does not exist. Creating...")
-    conn = sqlite3.connect(db_path)
-    conn.commit()
-    conn.close()
 
 
 engine = None
@@ -36,10 +24,11 @@ path = ""
 def initialize():
     global engine, Base, session_generator
     try:
-        logger.info("Initializing database {}...".format(db_path))
-        engine = create_engine('sqlite:///{}'.format(db_path))
+        logger.info("Initializing database: {}@{}:{}/{}...".format(db_login, db_address, db_port, db_schema))
+        engine = create_engine('mysql+mysqlconnector://{}:{}@{}:{}/{}'.format(db_login, db_password, db_address,
+                                                                              db_port, db_schema))
         Base = declarative_base()
-        session_generator = scoped_session(sessionmaker(bind=engine.execution_options(isolation_level='AUTOCOMMIT'), future=True))
+        session_generator = scoped_session(sessionmaker(bind=engine))
         import hapyka.database.models
         Base.metadata.create_all(bind=engine)
         logger.info("Database initialized")

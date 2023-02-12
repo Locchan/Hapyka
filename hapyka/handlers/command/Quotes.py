@@ -20,9 +20,12 @@ class Quotes(CommandHandler):
     def handle_impl(self, update: telegram.Update, context):
         session, session_transaction = get_transaction()
 
-        if update.message.reply_to_message.from_user.is_bot:
-            reply_text(update, context, NOTHING_INTERESTING_HERE)
-            return
+        try:
+            if update.message.reply_to_message.from_user.is_bot:
+                reply_text(update, context, NOTHING_INTERESTING_HERE)
+                return
+        except:
+            pass
 
         if update.message.reply_to_message is None:
             self_quotes = True
