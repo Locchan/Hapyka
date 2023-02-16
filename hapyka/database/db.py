@@ -28,7 +28,7 @@ def initialize():
         engine = create_engine('mysql+mysqlconnector://{}:{}@{}:{}/{}'.format(db_login, db_password, db_address,
                                                                               db_port, db_schema))
         Base = declarative_base()
-        session_generator = scoped_session(sessionmaker(bind=engine))
+        session_generator = scoped_session(sessionmaker(bind=engine, autocommit=True))
         import hapyka.database.models
         Base.metadata.create_all(bind=engine)
         logger.info("Database initialized")
