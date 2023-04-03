@@ -3,11 +3,10 @@ from hapyka.config.Config import decide_config_provider
 from hapyka.utils.logger import get_logger, setdebug
 import datetime
 
-version = "1.1.4.1"
+version = "1.1.4.2"
 release = '''
-Релиз 8: MySQL.
-В рамках перевода всей инфраструктуры на MySQL, Харука теперь тоже туда работает.
- Фикс 1.1.4.1: autocommit=true добавлен в подключение к базе.
+Релиз 9:
+Конфигурация репостера теперь работает так же как и все остальные конфиги.
 '''
 
 logger = get_logger()
