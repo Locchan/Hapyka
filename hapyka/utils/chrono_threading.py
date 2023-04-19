@@ -28,5 +28,6 @@ def chrono_minutely():
                 afunc()
             except Exception as e:
                 logger.error("Failed to run {}: {}".format(afunc.__name__, e.__class__.__name__))
+                logger.exception(e)
         time.sleep(60)
         pass

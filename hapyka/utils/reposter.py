@@ -45,7 +45,8 @@ def get_pics_to_repost():
 
 
 @require_reposter_config
-def calculate_reposter_speed(pics_to_repost=None):
+def calculate_reposter_speed(args, kwargs):
+    pics_to_repost=args[0]
     if pics_to_repost is None:
         pics_to_repost = get_pics_to_repost()
     queue_length = len(pics_to_repost)
@@ -60,7 +61,7 @@ def calculate_reposter_speed(pics_to_repost=None):
 
 
 @require_reposter_config
-def get_reposter_status():
+def get_reposter_status(args, kwargs):
     pics_to_repost = get_pics_to_repost()
     return (calculate_reposter_speed(pics_to_repost), len(pics_to_repost), reposter_config["reposter_speed_start"],
             reposter_config["reposter_speed_rate"],  reposter_config["reposter_speed_increase"], reposter_speed_default,
@@ -68,7 +69,7 @@ def get_reposter_status():
 
 
 @require_reposter_config
-def reposter_repost_picture():
+def reposter_repost_picture(args, kwargs):
     from __main__ import hapyka
     global last_repost, reposter_config
     passed_time = time() - last_repost

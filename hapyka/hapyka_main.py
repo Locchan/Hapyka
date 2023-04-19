@@ -3,10 +3,10 @@ from hapyka.config.Config import decide_config_provider
 from hapyka.utils.logger import get_logger, setdebug
 import datetime
 
-version = "1.1.4.2"
+version = "1.1.4.3"
 release = '''
-Релиз 9:
-Конфигурация репостера теперь работает так же как и все остальные конфиги.
+Релиз 10:
+Фикс репостера
 '''
 
 logger = get_logger()
