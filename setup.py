@@ -13,7 +13,7 @@ setup(
     install_requires=[
         'python-telegram-bot>=13, <20',
         'hvac',
-        'sqlalchemy',
+        'sqlalchemy>1.4, <2.0.0',
         'mysql-connector-python'
     ],
     scripts=['hapyka/hapyka_main.py'],
