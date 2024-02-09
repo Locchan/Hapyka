@@ -1,8 +1,9 @@
+from hapyka.config.ConfigEnv import ConfigEnv
 from hapyka.config.ConfigJson import ConfigJson
 from hapyka.config.ConfigVault import ConfigVault
 from hapyka.utils.logger import get_logger
 logger = get_logger()
-config_providers = [ConfigVault, ConfigJson]
+config_providers = [ConfigEnv, ConfigVault, ConfigJson]
 
 
 def decide_config_provider():
